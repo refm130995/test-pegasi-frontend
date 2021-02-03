@@ -1,6 +1,7 @@
+import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { GuardGuard } from './guards/guard.guard';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 const routes: Routes = [
@@ -22,7 +23,11 @@ const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

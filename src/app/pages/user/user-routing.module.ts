@@ -1,8 +1,10 @@
 import { UserComponent } from './user.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from '../dashboard/dashboard.component';
 // Components
+import { AuthGuard } from 'src/app/guards/auth/auth.guard';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+// Components Menu
 const routes: Routes = [
   {
     path: '',
