@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pegasi-testing-repo": {
+    "pegasi-test": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pegasi-testing-repo",
+            "outputPath": "dist/pegasi-test",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,9 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/intl-tel-input/build/css/intlTelInput.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -65,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pegasi-testing-repo:build"
+            "browserTarget": "pegasi-test:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pegasi-testing-repo:build:production"
+              "browserTarget": "pegasi-test:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pegasi-testing-repo:build"
+            "browserTarget": "pegasi-test:build"
           }
         },
         "test": {
@@ -113,16 +118,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "pegasi-testing-repo:serve"
+            "devServerTarget": "pegasi-test:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "pegasi-testing-repo:serve:production"
+              "devServerTarget": "pegasi-test:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "pegasi-testing-repo"
+  "defaultProject": "pegasi-test"
 }
