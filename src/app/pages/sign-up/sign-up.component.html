@@ -1,1 +1,273 @@
-<p>sign-up works!</p>
+<div class="bg-animation">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="mx-auto app-login-box col-md-8">
+      <div class="app-logo-inverse mx-auto mb-3"></div>
+      <form
+        class="modal-dialog w-100 mx-auto"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="h5 modal-title text-center">
+              <h4 class="mt-2">
+                <div>Bienvenid@</div>
+                <span>Por favor introduce tus datos</span>
+              </h4>
+            </div>
+            <div
+              id="exampleInputGroup1"
+              role="group"
+              aria-describedby="exampleInputGroup1__BV_description_"
+              class="form-group"
+            >
+              <div>
+                <label for="exampleFormControlSelect1">Ingrese su correo</label>
+                <input
+                  id="exampleInput1"
+                  type="email"
+                  placeholder="Correo de usuario"
+                  required="required"
+                  aria-required="true"
+                  formControlName="email"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': submitted && getForm.email.errors
+                  }"
+                />
+                <div
+                  *ngIf="submitted && getForm.email.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="getForm.email.errors.required">
+                    Por favor, ingresa un correo valido
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="exampleInputGroup2" role="group" class="form-group">
+              <div>
+                <label for="exampleFormControlSelect1">Ingrese su nombre</label>
+                <input
+                  id="exampleInput2"
+                  type="text"
+                  placeholder="Nombre"
+                  required="required"
+                  aria-required="true"
+                  formControlName="name"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': submitted && getForm.name.errors
+                  }"
+                />
+                <div
+                  *ngIf="submitted && getForm.name.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="getForm.name.errors.required">
+                    Por favor, ingrese su nombre
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="exampleInputGroup2" role="group" class="form-group">
+              <div>
+                <label for="exampleFormControlSelect1"
+                  >Ingrese su apellido</label
+                >
+                <input
+                  id="exampleInput2"
+                  type="text"
+                  placeholder="Apellido"
+                  required="required"
+                  aria-required="true"
+                  formControlName="lastname"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': submitted && getForm.lastname.errors
+                  }"
+                />
+                <div
+                  *ngIf="submitted && getForm.lastname.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="getForm.lastname.errors.required">
+                    Por favor, ingrese su apellido
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="exampleInputGroup2" role="group" class="form-group">
+              <div>
+                <label for="exampleFormControlSelect1"
+                  >Seleccione su edad</label
+                >
+                <select
+                  class="form-control"
+                  id="exampleFormControlSelect1"
+                  required="required"
+                  aria-required="true"
+                  formControlName="age"
+                  [ngClass]="{
+                    'is-invalid': submitted && getForm.age.errors
+                  }"
+                >
+                  <option *ngFor="let in of counter(50); let i = index">
+                    {{ i + 18 }}
+                  </option>
+                </select>
+                <div
+                  *ngIf="submitted && getForm.password.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="getForm.password.errors.required">
+                    Por favor, ingrese su edad
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div
+                id="exampleInputGroup2"
+                role="group"
+                class="form-group"
+                class="col-6 col-md-6"
+              >
+                <label for="exampleFormControlSelect1">Indique su genero</label>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    value="m"
+                    formControlName="gender"
+                  />
+                  <label for="exampleFormControlSelect1">Hombre</label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="exampleRadios1"
+                    value="w"
+                    formControlName="gender"
+                  />
+                  <label for="exampleFormControlSelect1">Mujer</label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="exampleRadios1"
+                    formControlName="gender"
+                    value="u"
+                  />
+                  <label for="exampleFormControlSelect1">Sin definir</label>
+                </div>
+              </div>
+              <div
+                class="col-6 col-md-6 border-left"
+                id="exampleInputGroup2"
+                *ngIf="getForm.gender.value == 'w'"
+              >
+                <label class="text-center"
+                  >¿Se encuentra en un proceso de embarazo o lactancia?</label
+                >
+                <div class="form-check">
+                  <bSwitch
+                    style="display: block"
+                    class="text-center"
+                    [switch-on-color]="'success'"
+                    [switch-off-text]="'NO'"
+                    [switch-on-text]="'SI'"
+                    formControlName="pregnant"
+                  ></bSwitch>
+                </div>
+              </div>
+            </div>
+            <div id="exampleInputGroup2" class="form-group mt-3">
+              <label class="text-center"
+                >Seleccione su fecha de nacimiento</label
+              >
+              <div class="input-group">
+                <input
+                  class="form-control"
+                  placeholder="yyyy-mm-dd"
+                  [placement]="'top-right'"
+                  name="dp"
+                  formControlName="birth"
+                  ngbDatepicker
+                  #d="ngbDatepicker"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-outline-secondary calendar"
+                    (click)="d.toggle()"
+                    type="button"
+                  ></button>
+                </div>
+              </div>
+              <div
+                *ngIf="submitted && getForm.password.errors"
+                class="invalid-feedback"
+              ></div>
+            </div>
+            <form #f="ngForm" [formGroup]="form">
+              <div>
+                <label for="exampleFormControlSelect1"
+                  >Ingrese su número telefónico</label
+                >
+                <div class="wrapper">
+                  <ngx-intl-tel-input
+                    [cssClass]="'form-control'"
+                    [preferredCountries]="preferredCountries"
+                    [enableAutoCountrySelect]="true"
+                    [enablePlaceholder]="true"
+                    [searchCountryFlag]="true"
+                    [searchCountryField]="[
+                      SearchCountryField.Iso2,
+                      SearchCountryField.Name
+                    ]"
+                    [selectFirstCountry]="false"
+                    [selectedCountryISO]="CountryISO.Colombia"
+                    [maxLength]="15"
+                    [tooltipField]="TooltipLabel.Name"
+                    [phoneValidation]="true"
+                    separateDialCode="true"
+                    [numberFormat]="PhoneNumberFormat.National"
+                    name="phone"
+                    formControlName="phone"
+                  >
+                  </ngx-intl-tel-input>
+                </div>
+                <div
+                  *ngIf="submitted && getForm.name.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="getForm.name.errors.required">
+                    Por favor, ingrese su nombre
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer clearfix">
+            <div class="align-center-div form-group">
+              <button type="submit" class="btn btn-primary btn-block">
+                Registrarse
+              </button>
+            </div>
+          </div>
+          <div class="align-center-div mt-2 mb-2">
+            <a routerLink="" class="btn-sm btn btn-link"
+              >¿Posees una cuenta? Ingresa Ya!</a
+            >
+          </div>
+        </div>
+      </form>
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>
