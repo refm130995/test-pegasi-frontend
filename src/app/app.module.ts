@@ -16,7 +16,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { FooterComponent } from './components/footer/footer.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { SubheaderRightComponent } from './components/header/subheader-right/subheader-right.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
@@ -27,7 +26,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SignUpComponent,
     DashboardComponent,
     FooterComponent,
-    SubheaderRightComponent,
   ],
   imports: [
     TooltipModule.forRoot(),
