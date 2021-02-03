@@ -1,1 +1,85 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets/base";
+
+.iconx {
+  &16 {
+    width: 16px;
+    height: 16px;
+  }
+  &24 {
+    width: 24px;
+    height: 24px;
+  }
+  &32 {
+    width: 32px;
+    height: 32px;
+  }
+}
+.text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+dropzone > .dropzone.dz-wrapper {
+  height: 100% !important;
+}
+dropzone > .dropzone.dz-wrapper.dz-single .dz-message {
+  height: 89% !important;
+  overflow: hidden !important;
+}
+a:hover {
+  color: #f15a24;
+  opacity: 0.6;
+  text-decoration: underline;
+}
+.cursor {
+  &-grab {
+    cursor: grab !important;
+  }
+  &-grabbing {
+    cursor: grabbing !important;
+  }
+  &-pointer {
+    cursor: pointer;
+  }
+}
+.ngx-gallery-icons-wrapper {
+  position: absolute;
+  top: -17px;
+  right: -6px;
+}
+i.ion-md-close.ngx-gallery-icon-content {
+  text-shadow: 3px 1px 2px #737373;
+}
+// logo
+.logo-src {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.closed-sidebar .app-sidebar .logo-src {
+  width: 32px;
+  background-image: url("/assets/images/logo-ico.png");
+}
+.closed-sidebar-open.closed-sidebar .app-sidebar .logo-src {
+  width: 200px;
+  background-image: url("/assets/images/logo.png");
+}
+
+.app-logo-inverse {
+  height: 200px;
+  width: 200px;
+  background-image: url("/assets/images/logo-login1.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
+.app-logo-company {
+  height: 500px;
+  width: 500px;
+  background-image: url("/assets/images/logo-dashboard.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
