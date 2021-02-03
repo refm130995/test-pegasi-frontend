@@ -1,1 +1,89 @@
-<p>sign-in works!</p>
+<div class="h-100 bg-animation">
+  <div class="d-flex h-100 justify-content-center align-items-center">
+    <div class="mx-auto app-login-box col-md-8">
+      <div class="app-logo-inverse mx-auto mb-3"></div>
+      <form
+        class="modal-dialog w-100 mx-auto"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="h5 modal-title text-center">
+              <h4 class="mt-2">
+                <div>Bienvenid@</div>
+                <span>Por favor introduce tus datos</span>
+              </h4>
+            </div>
+            <div
+              id="exampleInputGroup1"
+              role="group"
+              aria-describedby="exampleInputGroup1__BV_description_"
+              class="form-group"
+            >
+              <div>
+                <input
+                  id="exampleInput1"
+                  type="email"
+                  placeholder="Nombre de Usuario"
+                  required="required"
+                  aria-required="true"
+                  formControlName="email"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': submitted && getForm.email.errors
+                  }"
+                />
+                <div
+                  *ngIf="submitted && getForm.email.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="getForm.email.errors.required">
+                    Por favor, ingresa un correo valido
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="exampleInputGroup2" role="group" class="form-group">
+              <div>
+                <input
+                  id="exampleInput2"
+                  type="password"
+                  placeholder="Contraseña"
+                  required="required"
+                  aria-required="true"
+                  formControlName="password"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': submitted && getForm.password.errors
+                  }"
+                />
+                <div
+                  *ngIf="submitted && getForm.password.errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="getForm.password.errors.required">
+                    Por favor, ingresa tu contraseña
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer clearfix">
+            <div class="align-center-div form-group">
+              <button type="submit" class="btn btn-primary btn-block">
+                Iniciar Sesion
+              </button>
+            </div>
+          </div>
+          <div class="align-center-div mt-2 mb-2">
+            <a routerLink="/signUp" class="btn-sm btn btn-link"
+              >¿Aún no posees una cuenta? Registrate Ya!</a
+            >
+          </div>
+        </div>
+      </form>
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>
