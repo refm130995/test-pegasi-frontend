@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-sign-in',
@@ -10,7 +11,11 @@ import Swal from 'sweetalert2';
 export class SignInComponent implements OnInit {
   form: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -28,5 +33,15 @@ export class SignInComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+
+    /*  this.auth.signIn(this.form.value).then((res) => {
+      console.log(res);
+      if (res.error) {
+        console.error('Logueo no exitoso');
+        Swal.fire('Error!', 'Correo o contraseña incorrecto!', 'error');
+      } else {
+        this.auth.setConfigClient(res);
+      }
+    }); */
   }
 }

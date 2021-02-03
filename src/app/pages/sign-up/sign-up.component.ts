@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import {
   SearchCountryField,
   TooltipLabel,
@@ -27,7 +29,11 @@ export class SignUpComponent implements OnInit {
     CountryISO.Colombia,
     CountryISO.Venezuela,
   ];
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -56,6 +62,16 @@ export class SignUpComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+
+    /*  this.auth.signIn(this.form.value).then((res) => {
+      console.log(res);
+      if (res.error) {
+        console.error('Logueo no exitoso');
+        Swal.fire('Error!', 'Correo o contraseña incorrecto!', 'error');
+      } else {
+        this.auth.setConfigClient(res);
+      }
+    }); */
   }
 
   counter(i: number) {
