@@ -64,7 +64,7 @@ export class SignUpComponent implements OnInit {
 
     this.auth.signUp(this.form.value).then(
       (res) => {
-        Swal.fire('Listo!', 'Usuario registrado exitosamente', 'success');
+        Swal.fire('Usuario registrado exitosamente!', 'Bienvenido!', 'success');
         this.auth.setConfigClient(res);
       },
       (err) => {
