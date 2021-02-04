@@ -38,7 +38,7 @@ export class SignUpComponent implements OnInit {
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       age: [13, [Validators.required]],
-      gender: ['u'],
+      gender: ['Sin definir'],
       pregnant: [false],
       phone: [],
       birthDate: ['', [Validators.required]],
@@ -71,6 +71,12 @@ export class SignUpComponent implements OnInit {
         console.log(err);
         if (err.error.code == 404) {
           Swal.fire('Error!', 'Correo o contraseña incorrecto!', 'error');
+        } else if (err.error.code == 400) {
+          Swal.fire(
+            'Error!',
+            'La fecha de nacimiento no coincide con la edad seleccionada',
+            'error'
+          );
         } else {
           Swal.fire('Error!', environment.DefaultMessages.error, 'error');
         }
