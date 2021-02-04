@@ -36,7 +36,7 @@
                 user?.birthDate.month
               }}
             </td>
-            <td>{{ user?.phone.internationalNumber }}</td>
+            <td>{{ user?.phone?.internationalNumber || "N/A" }}</td>
           </tr>
         </tbody>
       </table>
