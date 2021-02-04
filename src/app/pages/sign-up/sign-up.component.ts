@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import {
   SearchCountryField,
   TooltipLabel,
   CountryISO,
   PhoneNumberFormat,
 } from 'ngx-intl-tel-input';
+import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/services/auth/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -29,22 +30,18 @@ export class SignUpComponent implements OnInit {
     CountryISO.Colombia,
     CountryISO.Venezuela,
   ];
-  constructor(
-    private formBuilder: FormBuilder,
-    private auth: AuthService,
-    private router: Router
-  ) {}
+  constructor(private formBuilder: FormBuilder, private auth: AuthService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      name: ['', [Validators.required, Validators.email]],
-      lastname: ['', [Validators.required, Validators.email]],
-      age: ['', [Validators.required, Validators.email]],
-      gender: ['', [Validators.required, Validators.email]],
-      pregnant: [false, [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.email]],
-      birth: ['', [Validators.required, Validators.email]],
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      age: [13, [Validators.required]],
+      gender: ['u'],
+      pregnant: [false],
+      phone: [],
+      birthDate: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
@@ -59,19 +56,26 @@ export class SignUpComponent implements OnInit {
 
   async onSubmit() {
     this.submitted = true;
+    console.log(this.form);
+
     if (this.form.invalid) {
       return;
     }
 
-    /*  this.auth.signIn(this.form.value).then((res) => {
-      console.log(res);
-      if (res.error) {
-        console.error('Logueo no exitoso');
-        Swal.fire('Error!', 'Correo o contraseña incorrecto!', 'error');
-      } else {
+    this.auth.signUp(this.form.value).then(
+      (res) => {
+        Swal.fire('Listo!', 'Usuario registrado exitosamente', 'success');
         this.auth.setConfigClient(res);
+      },
+      (err) => {
+        console.log(err);
+        if (err.error.code == 404) {
+          Swal.fire('Error!', 'Correo o contraseña incorrecto!', 'error');
+        } else {
+          Swal.fire('Error!', environment.DefaultMessages.error, 'error');
+        }
       }
-    }); */
+    );
   }
 
   counter(i: number) {
