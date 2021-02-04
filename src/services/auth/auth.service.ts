@@ -11,14 +11,26 @@ export class AuthService {
   constructor(private api: ApiService, private router: Router) {}
 
   isAuthenticated(): any {
-    return localStorage.getItem(environment.storageKeys.user);
+    return localStorage.getItem('token');
+  }
+
+  getUserData(): Promise<any> {
+    return this.api.get('user/loggedin', null, true);
   }
 
   setConfigClient(data: Token) {
     for (const k in data) {
-      localStorage.setItem(environment.storageKeys[k], JSON.stringify(data[k]));
+      localStorage.setItem(k, JSON.stringify(data[k]));
     }
     this.router.navigateByUrl('user/dashboard');
+  }
+
+  signIn(params: any): Promise<any> {
+    return this.api.post('user/login', params);
+  }
+
+  signUp(params: any): Promise<any> {
+    return this.api.post('user/register', params);
   }
 
   signOut() {
