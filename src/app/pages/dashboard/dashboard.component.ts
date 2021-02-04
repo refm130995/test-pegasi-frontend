@@ -21,7 +21,6 @@ export class DashboardComponent implements OnInit {
     this.auth.getUserData().then(
       (res) => {
         this.user = res;
-        console.log(this.user);
       },
       (err) => {
         console.log(err);

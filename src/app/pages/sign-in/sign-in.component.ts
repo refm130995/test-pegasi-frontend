@@ -1,7 +1,8 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { AuthService } from 'src/services/auth/auth.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-sign-in',
@@ -11,11 +12,7 @@ import Swal from 'sweetalert2';
 export class SignInComponent implements OnInit {
   form: FormGroup;
   submitted = false;
-  constructor(
-    private formBuilder: FormBuilder,
-    private auth: AuthService,
-    private router: Router
-  ) {}
+  constructor(private formBuilder: FormBuilder, private auth: AuthService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -34,14 +31,18 @@ export class SignInComponent implements OnInit {
       return;
     }
 
-    /*  this.auth.signIn(this.form.value).then((res) => {
-      console.log(res);
-      if (res.error) {
-        console.error('Logueo no exitoso');
-        Swal.fire('Error!', 'Correo o contraseña incorrecto!', 'error');
-      } else {
+    this.auth.signIn(this.form.value).then(
+      (res) => {
         this.auth.setConfigClient(res);
+      },
+      (err) => {
+        console.log(err);
+        if (err.error.code == 404) {
+          Swal.fire('Error!', 'Correo o contraseña incorrecto!', 'error');
+        } else {
+          Swal.fire('Error!', environment.DefaultMessages.error, 'error');
+        }
       }
-    }); */
+    );
   }
 }
