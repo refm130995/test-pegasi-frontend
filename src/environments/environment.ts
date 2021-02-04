@@ -1,17 +1,9 @@
 export const environment = {
   production: false,
-  URL_API_BASE: 'https://localhost:8100/api',
-  URL_IMG_BASE: 'https://localhost:8100',
+  URL_API_BASE: 'http://localhost:8100/api/v1',
+  URL_IMG_BASE: 'http://localhost:8100',
   async getToken() {
-    return (
-      JSON.parse(localStorage.getItem(this.storageKeys.token_type)) +
-      ' ' +
-      JSON.parse(localStorage.getItem(this.storageKeys.access_token) || '')
-    );
-  },
-
-  getUser() {
-    return JSON.parse(localStorage.getItem(this.storageKeys.user));
+    return localStorage.getItem('token');
   },
 
   get storageKeys() {
