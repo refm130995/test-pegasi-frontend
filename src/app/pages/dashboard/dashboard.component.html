@@ -1,3 +1,45 @@
-<div class="bg-white h-100">
-  <div class="app-logo-company mx-auto mb-3"></div>
+<div class="h-100 bg-animation">
+  <div class="d-flex h-100 justify-content-center align-items-center">
+    <div class="mx-auto app-login-box col-md-8">
+      <div class="app-logo-inverse mx-auto mb-3"></div>
+
+      <div class="h5 modal-title text-center">
+        <h4 class="mt-2">
+          <div>Bienvenido {{ user?.firstname }} {{ user?.lastname }}</div>
+        </h4>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Embarazo o Lactancia</th>
+            <th scope="col">Fecha de nacimiento</th>
+            <th scope="col">Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>{{ user?.firstname }}</td>
+            <td>{{ user?.lastname }}</td>
+            <td>{{ user?.age }}</td>
+            <td>{{ user?.gender }}</td>
+            <td *ngIf="!user?.pregnant">No</td>
+            <td *ngIf="user?.pregnant">Si</td>
+            <td>
+              {{ user?.birthDate.year }}/{{ user?.birthDate.day }}/{{
+                user?.birthDate.month
+              }}
+            </td>
+            <td>{{ user?.phone.internationalNumber }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
